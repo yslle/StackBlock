@@ -8,6 +8,13 @@ public class CollisionDetected : MonoBehaviour
     public GameManager gameManager;
     Rigidbody2D rigid;
 
+    void Start()
+    {
+        //프리팹 스크립트 연결
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        spawner = GameObject.Find("Spawner").GetComponent<BlockSpawn>();
+    }
+
     private void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.name == "bottom") {
             if (spawner.count == 1) {
