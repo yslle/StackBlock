@@ -5,14 +5,18 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public BlockSpawn spawner;
     public Text scoreShow;
     public GameObject failBox;
     public GameObject blockClone;
+    public Camera mainCam;
+
+    public BlockSpawn spawner;
+    
+    public Vector3 pos;
     public Vector3 posCam;
     public float camPosY;
     public int score;
-    public Camera mainCam;
+
 
     //초기화
     void Start() {
@@ -31,7 +35,8 @@ public class GameManager : MonoBehaviour
         if (score != 0) {
             posCam = mainCam.transform.position;
             mainCam.transform.position = new Vector3(posCam.x, posCam.y + 1, posCam.z);
-            spawner.blockMove.transform.position = new Vector3(spawner.pos.x, spawner.pos.y + 1, spawner.pos.z);
+            pos = spawner.blockMove.transform.position;
+            spawner.blockMove.transform.position = new Vector3(pos.x, pos.y + 1, pos.z);
         }
 
         score++;
@@ -63,7 +68,7 @@ public class GameManager : MonoBehaviour
         // resetGround();
 
         // blockMove 위치 초기화
-        spawner.blockMove.transform.position = new Vector3(spawner.pos.x, spawner.posBlockMove, spawner.pos.z);
+        spawner.blockMove.transform.position = new Vector3(spawner.pos.x, spawner.posYBlockMove, spawner.pos.z);
         
         // 모든 블록 없애기
         foreach (GameObject cloneBlock in spawner.clones){

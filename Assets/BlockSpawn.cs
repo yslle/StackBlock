@@ -10,7 +10,7 @@ public class BlockSpawn : MonoBehaviour
     public GameObject newBlock;
     public List<GameObject> clones;
     public Vector3 pos;
-    public float posBlockMove;
+    public float posYBlockMove;
     int SpawnObj;
 
     public int count;
@@ -19,8 +19,8 @@ public class BlockSpawn : MonoBehaviour
 
     void Start()
     {
-        pos = blockMove.transform.position;
-        posBlockMove = pos.y;
+        // pos = blockMove.transform.position;
+        posYBlockMove = blockMove.transform.position.y;
         count = 0;
         isClickable = true;
     }
@@ -41,7 +41,6 @@ public class BlockSpawn : MonoBehaviour
                 count++;
                 Debug.Log("Mouse Click: " + count);
                 pos = blockMove.transform.position;
-                // blockMove.transform.position = new Vector3(pos.x, pos.y, 0);
                 
                 //새로 생성
                 GameObject clone = Instantiate(newBlock, pos, Quaternion.identity);
