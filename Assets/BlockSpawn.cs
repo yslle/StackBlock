@@ -15,12 +15,14 @@ public class BlockSpawn : MonoBehaviour
 
     public int count;
     GameObject lastBlock;
+    public bool isClickable;
 
     void Start()
     {
         pos = blockMove.transform.position;
         posBlockMove = pos.y;
         count = 0;
+        isClickable = true;
     }
 
     void Update()
@@ -33,8 +35,9 @@ public class BlockSpawn : MonoBehaviour
         //마우스 클릭
         if (Input.GetMouseButtonDown(0))
         {
-            if (EventSystem.current.IsPointerOverGameObject() == false)
-            {  //UI이 위가 아니면
+            if (EventSystem.current.IsPointerOverGameObject() == false && isClickable == true) //UI 위가 아니며 클릭 가능 상태
+            {
+                isClickable = false;    // 추락 중에 클릭 안되도록
                 count++;
                 Debug.Log("Mouse Click: " + count);
                 pos = blockMove.transform.position;
