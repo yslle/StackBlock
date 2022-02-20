@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
 
         score++;
         scoreShow.text = score.ToString();
+        spawner.isClickable = true; // 막았던 클릭 다시 되도록 변경
     }
 
     //실패한 경우
@@ -48,6 +49,10 @@ public class GameManager : MonoBehaviour
     public void retry()
     {
         Debug.Log("retry");
+
+        // 막았던 클릭 다시 되도록 변경
+        spawner.isClickable = true;
+
 
         // 점수 초기화
         score = 0;
